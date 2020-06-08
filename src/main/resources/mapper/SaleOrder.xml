@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clicknine.dao.SaleOrderDao">
+    <resultMap type="com.clicknine.entity.po.SaleOrder" id="BaseResultMap">
+        <id column="order_id" property="orderId"/>
+        <result column="customer_name" property="customerName"/>
+        <result column="customer_address" property="customerAddress"/>
+        <result column="order_time" property="orderTime"/>
+        <result column="order_number" property="orderNumber"/>
+        <result column="salesman" property="salesman"/>
+        <result column="salesman_id" property="salesmanId"/>
+        <result column="former" property="former"/>
+        <result column="ctime" property="ctime"/>
+        <result column="utime" property="utime"/>
+    </resultMap>
+
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="orderId">
+        insert into sale_order (customer_name,customer_address,order_time,order_number,salesman,salesman_id,former,ctime,
+        utime) values (
+        #{customerName},
+        #{customerAddress},
+        #{orderTime},
+        #{orderNumber},
+        #{salesman},
+        #{salesmanId},
+        #{former},
+        #{ctime},
+        #{utime}
+        )
+    </insert>
+    
+    <select id="findOne" resultMap="BaseResultMap">
+    	SELECT * FROM sale_order WHERE order_id = #{orderId} 
+    </select>
+    
+    <select id="queryPage" resultMap="BaseResultMap">
+    	SELECT * FROM sale_order
+    </select>
+
+</mapper>
